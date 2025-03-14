@@ -1,6 +1,7 @@
 const input = document.getElementById('input_item');
 let contador = 0;
 
+
 export function criarItemDaLista(){
     if(input.value === ""){
         alert("digite algo");
@@ -25,22 +26,25 @@ export function criarItemDaLista(){
         }
     })
 
-
     containerItemDaLista.appendChild(inputcheckbox);
     containerItemDaLista.appendChild(nomeItem);
     itemDaLista.appendChild(containerItemDaLista);
+    gerarDiaDaSemana(itemDaLista);
+    return itemDaLista;
+    
+}
 
+function gerarDiaDaSemana(item){
     const diaDaSemana = new Date().toLocaleDateString("pt-BR", {weekday: "long"});
     const data = new Date().toLocaleDateString("pt-BR");
     const horario = new Date().toLocaleTimeString("pt-BR",{hour:"numeric", minute: "numeric"});
     const dataCompleta = diaDaSemana + " ("+ data + ") " + horario;
     const itemData = document.createElement("p");
     itemData.innerHTML = dataCompleta;
-    itemDaLista.appendChild(itemData);
-    
-    return itemDaLista
-    
+    item.appendChild(itemData);
+    return dataCompleta;
 }
+
 
 export function verificarListaVazia(lista){
     const mensagemDaList = document.querySelector(".mensagemDaLista");
